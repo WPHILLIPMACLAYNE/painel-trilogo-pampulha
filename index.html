@@ -288,6 +288,32 @@ footer{margin-top:40px;padding-top:18px;border-top:1px solid var(--line);color:v
 .vd-bar-bg{grid-column:1/-1;height:8px;background:var(--black3);border-radius:4px;overflow:hidden}.vd-bar-fill{height:100%;background:var(--yellow);border-radius:4px}
 .vd-analise p,.vd-analise li{font-size:12.5px;color:#ddd;line-height:1.5}.vd-analise ul{margin:0 0 0 18px}
 
+/* ---------- FINANCEIRO ---------- */
+.fin-hero{padding:20px 0 8px}
+.fin-hero h2{font-size:clamp(20px,3vw,30px);font-weight:900;margin-top:6px;letter-spacing:-.02em}
+.fin-hero p{color:var(--muted);font-size:13px;margin-top:6px;max-width:900px}
+.fin-kpis .kpi .v{font-size:25px}
+.fin-tabelas{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:12px;margin:14px 0}
+.fin-tabela-wrap{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);overflow:auto}
+.fin-tabela{width:100%;border-collapse:collapse;min-width:360px}
+.fin-tabela th{background:var(--black3);color:var(--muted);font-size:11px;text-transform:uppercase;letter-spacing:.05em;padding:11px 12px;text-align:left;white-space:nowrap}
+.fin-tabela td{padding:10px 12px;border-top:1px solid var(--line);font-size:12.5px;vertical-align:middle;white-space:nowrap}
+.fin-tabela tbody tr:hover{background:rgba(255,255,255,.02)}
+.fin-tabela tr.alerta td{color:var(--red);font-weight:800}
+.fin-plano{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:10px;margin-top:14px}
+.fin-nivel{background:var(--card);border:1px solid var(--line);border-left:5px solid var(--yellow);border-radius:var(--radius);padding:14px 16px}
+.fin-nivel h3{font-size:14px;font-weight:900;color:var(--yellow)}
+.fin-nivel .fin-meta{font-size:12px;color:#ddd;margin-top:7px;line-height:1.45}
+.fin-nivel .fin-val{font-size:20px;font-weight:900;margin-top:5px}
+.fin-nivel .fin-acao{font-size:12px;color:var(--muted);margin-top:8px;line-height:1.45}
+.fin-proj{display:flex;flex-direction:column;gap:10px;background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:16px;margin-top:14px}
+.fin-proj-row{display:grid;grid-template-columns:120px 1fr 100px;align-items:center;gap:10px;font-size:12px}
+.fin-proj-label,.fin-proj-val{color:#ddd}.fin-proj-val{text-align:right;font-variant-numeric:tabular-nums;color:var(--yellow);font-weight:800}
+.fin-proj-bg{height:18px;background:var(--black3);border-radius:5px;overflow:hidden}.fin-proj-bar{height:100%;background:var(--yellow);border-radius:5px;min-width:2px}
+.fin-analise{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px;margin-top:14px}
+.fin-analise .card{background:#171717}.fin-analise h3{font-size:13px;color:var(--yellow);margin-bottom:4px}
+.fin-analise p,.fin-analise li{font-size:12.5px;color:#ddd;line-height:1.5}.fin-analise ul{margin:0 0 0 18px}
+
 @media(max-width:600px){
   .wrap{padding-left:14px;padding-right:14px}
   .filtros{position:static;display:grid;grid-template-columns:1fr}
@@ -328,6 +354,7 @@ footer{margin-top:40px;padding-top:18px;border-top:1px solid var(--line);color:v
     <button type="button" class="modo-btn" id="modoPnl">💰 P&L Junho</button>
     <button type="button" class="modo-btn" id="modoKpiHist">📈 KPI Histórico</button>
     <button type="button" class="modo-btn" id="modoVendas">🛒 Vendas</button>
+    <button type="button" class="modo-btn" id="modoFinanceiro">💳 Financeiro</button>
   </div>
 
   <!-- GESTÃO 2026 -->
@@ -403,6 +430,27 @@ footer{margin-top:40px;padding-top:18px;border-top:1px solid var(--line);color:v
     <div id="vdResumo" class="vd-resumo"></div>
     <div class="sec-titulo"><h2>Análise Codex</h2><span class="cnt">leitura executiva de vendas</span></div>
     <div id="vdAnalise" class="vd-analise"></div>
+  </div>
+
+  <!-- FINANCEIRO -->
+  <div id="secFinanceiro" class="none">
+    <div class="fin-hero">
+      <div class="g-tag">💳 Sistema Smart Fit · Relatório de Receitas + Inadimplência</div>
+      <h2>Financeiro — Receita e Inadimplência</h2>
+      <p>SBRMGCPAM02 - Pampulha · período <b>Julho/2026</b> · atualizado em <b>02/08/2026</b></p>
+    </div>
+    <div class="kpis fin-kpis" id="finCards"></div>
+    <div class="sec-titulo"><h2>Inadimplência por tipo e vencimento</h2><span class="cnt">concentração da exposição</span></div>
+    <div class="fin-tabelas">
+      <div class="fin-tabela-wrap"><table class="fin-tabela" id="finTipo"></table></div>
+      <div class="fin-tabela-wrap"><table class="fin-tabela" id="finVenc"></table></div>
+    </div>
+    <div class="sec-titulo"><h2>Plano de cobrança</h2><span class="cnt">4 níveis de prioridade</span></div>
+    <div id="finPlano" class="fin-plano"></div>
+    <div class="sec-titulo"><h2>Projeção de exposição · 3 meses</h2><span class="cnt">se nenhuma ação for tomada</span></div>
+    <div id="finProj" class="fin-proj"></div>
+    <div class="sec-titulo"><h2>Análise Codex</h2><span class="cnt">leitura executiva financeira</span></div>
+    <div id="finAnalise" class="fin-analise"></div>
   </div>
 
   <!-- TICKETS -->
@@ -890,18 +938,54 @@ const VDL = {"fonte": "Power BI .KPI Smart Fit. · .Vendas - Ventas · Por Canal
    +'<div class="card"><h3>▸ NARRATIVA</h3><p class="g-narr">'+esc(va.narrativa)+'</p></div>';
 })();
 
+// ---------- Financeiro ----------
+const FIN = {"fonte": "Sistema Smart Fit · Relatório de Receitas + Inadimplência", "atualizado": "02/08/2026", "unidade": "SBRMGCPAM02 - Pampulha", "periodo": "Julho/2026", "receitas": {"total": 179441.7, "transacoes": 1348, "itens": [{"nome": "Mensalidades", "valor": 125304.06, "pct": 69.8}, {"nome": "Boletos", "valor": 52113.5, "pct": 29.0}, {"nome": "Manutenção Anual", "valor": 1751.99, "pct": 1.0}, {"nome": "Taxa de Adesão", "valor": 272.15, "pct": 0.2}]}, "inadimplencia": {"total": 41041.0, "itens_count": 265, "taxa_receita": 22.9, "taxa_julho": 15.2, "alerta": true, "por_plano": [{"nome": "Black", "itens": 145, "valor": 22688.72, "pct": 55.3, "ticket_medio": 156}, {"nome": "Smart", "itens": 48, "valor": 6451.73, "pct": 15.7, "ticket_medio": 134}, {"nome": "Fit", "itens": 34, "valor": 4095.98, "pct": 10.0, "ticket_medio": 120}], "por_tipo": [{"nome": "Mensalidade Black", "itens": 145, "valor": 22688.72, "pct": 55.3}, {"nome": "Mensalidade Smart", "itens": 48, "valor": 6451.73, "pct": 15.7}, {"nome": "Mensalidade Fit", "itens": 34, "valor": 4095.98, "pct": 10.0}, {"nome": "Pagamento em Boleto", "itens": 10, "valor": 4031.93, "pct": 9.8, "alerta": true}, {"nome": "Multa", "itens": 12, "valor": 2047.8, "pct": 5.0}, {"nome": "Pendências cancelamento", "itens": 7, "valor": 1092.29, "pct": 2.7}, {"nome": "Manutenção Anual", "itens": 7, "valor": 462.35, "pct": 1.1}, {"nome": "Pagamento em Pix", "itens": 1, "valor": 149.9, "pct": 0.4}, {"nome": "Taxa de adesão", "itens": 1, "valor": 20.3, "pct": 0.0}], "por_vencimento": [{"data": "01/08", "itens": 96, "valor": 13682.0, "alerta": true}, {"data": "20/07", "itens": 62, "valor": 9191.0}, {"data": "10/07", "itens": 57, "valor": 8107.0}, {"data": "01/07", "itens": 29, "valor": 6284.0}, {"data": "Demais", "itens": 21, "valor": 3777.0}], "faixas": [{"faixa": "R$ 100-150", "itens": 125, "valor": 16792.0}, {"faixa": "R$ 150-200", "itens": 100, "valor": 16391.0}, {"faixa": "R$ 200-300", "itens": 11, "valor": 2474.0}, {"faixa": "R$ 300+", "itens": 10, "valor": 4189.0, "alerta": true}, {"faixa": "Até R$ 100", "itens": 19, "valor": 1196.0}]}, "plano_cobranca": [{"nivel": 1, "nome": "URGENTE (24h)", "itens": 17, "valor": 5124.22, "desc": "10 boletos grandes + 7 pendências cancelamento. Risco de perda total.", "meta": "Recuperar 70% em 7 dias (R$ 3.587)", "acao": "Contato individual, link pagamento, validação contratual"}, {"nivel": 2, "nome": "ALTO (até 7 dias)", "itens": 96, "valor": 13682.0, "desc": "Vencidos 01/08. Agir antes de envelhecer.", "meta": "Reduzir estoque em 60% até 08/08 (R$ 8.209)", "acao": "Régua D+1/D+3/D+7, retentativa cartão/Pix, WhatsApp"}, {"nivel": 3, "nome": "MÉDIO", "itens": 119, "valor": 17298.0, "desc": "Vencidos 10/07 e 20/07.", "meta": "Separar ativos de cancelados, resolver meio de pagamento", "acao": "Ativos: resolver pagamento. Cancelados: acordo financeiro"}, {"nivel": 4, "nome": "BAIXO", "itens": 33, "valor": 6936.8, "desc": "Vencidos 01/07 (30+ dias) + demais + multas.", "meta": "Oferta de quitação ou acordo curto", "acao": "Oferta objetiva, cobrança especializada"}], "projecao_3meses": [{"mes": "Estoque atual", "exposicao": 41041}, {"mes": "Após 1 mês", "exposicao": 82082}, {"mes": "Após 2 meses", "exposicao": 123123}, {"mes": "Após 3 meses", "exposicao": 164164}], "analise": {"saude": "Inadimplência de 22,9% — preocupante. Benchmark saudável: abaixo de 10-12%. Julho isolado (15,2%) é alto mas administrável. Agosto já inicia com R$ 13,7 mil vencidos.", "alerta_agosto": "96 itens vencidos em 01/08 = R$ 13.682 (33% do total). Agir antes de completar 7 dias.", "alerta_boletos": "10 boletos = R$ 4.032 com ticket médio R$ 403. São 3,8% dos itens mas 9,8% do valor. Risco de perda integral.", "kpi_160": "O KPI mostra 160 inadimplentes (9,9% da base). O relatório mostra 265 itens (16,4%). A diferença: múltiplos títulos por aluno, multas, boletos, cancelamentos. Média de 1,66 item/aluno.", "recomendacoes": ["War room dos 17 títulos críticos: 100% contatados em 24h, recuperar R$ 3.587 em 7 dias", "Régua automática para 96 vencidos 01/08: contatar 100%, recuperar R$ 8.209 em 7 dias", "Migrar pagadores de boleto para recorrência (cartão/Pix): reduzir novos boletos em 80%", "Auditoria de multas e cancelamentos: classificar 19 casos em 5 dias", "Painel diário de cobrança + vendas: reduzir estoque total para < R$ 25 mil até 31/08 e elevar vendas de 47 para 70"], "narrativa": "A Pampulha encerra julho com inadimplência elevada de R$ 41 mil (22,9% da receita), agravada por agosto já iniciar com R$ 13,7 mil vencidos. O problema está concentrado em mensalidades Black (55%), boletos de alto valor (R$ 4.032) e carteira envelhecida. A unidade precisa tratar cobrança como operação diária, priorizando 17 títulos críticos, atacando imediatamente os 96 vencimentos de 01/08 e migrando a base exposta a boleto para meios recorrentes. Sem reação, a exposição pode chegar a R$ 164 mil em 3 meses.", "analista": "Codex (gpt-5.6-luna, high reasoning) · Dados extraídos do sistema Smart Fit em 02/08/2026"}};
+const finMoney = v => fmt.format(Number(v||0));
+(function(){
+  const i = FIN.inadimplencia;
+  document.getElementById('finCards').innerHTML = [
+    {v:FIN.receitas.total,l:'Receita total',c:'y',ic:'💰'},
+    {v:i.total,l:'Inadimplência',c:'red',ic:'⚠️'},
+    {v:i.taxa_receita+'%',l:'Taxa sobre receita',c:'red',ic:'📉'}
+  ].map(k=>'<div class="kpi '+k.c+'"><div class="v money">'+esc(finMoney(k.v))+'</div><div class="l"><span class="ic">'+k.ic+'</span>'+esc(k.l)+'</div></div>').join('');
+
+  document.getElementById('finTipo').innerHTML = '<thead><tr><th>Tipo</th><th>Itens</th><th>Valor</th><th>%</th></tr></thead><tbody>'
+    + i.por_tipo.map(t=>'<tr'+(t.alerta?' class="alerta"':'')+'><td><b>'+esc(t.nome)+'</b></td><td>'+t.itens+'</td><td>'+finMoney(t.valor)+'</td><td>'+t.pct+'%</td></tr>').join('')
+    + '</tbody>';
+  document.getElementById('finVenc').innerHTML = '<thead><tr><th>Vencimento</th><th>Itens</th><th>Valor</th><th>Sinal</th></tr></thead><tbody>'
+    + i.por_vencimento.map(t=>'<tr'+(t.alerta?' class="alerta"':'')+'><td><b>'+esc(t.data)+'</b></td><td>'+t.itens+'</td><td>'+finMoney(t.valor)+'</td><td>'+(t.alerta?'⚠️ Prioridade':'—')+'</td></tr>').join('')
+    + '</tbody>';
+
+  const nivelCor = ['#FF4D4F','#FF9F43','#FFE600','#4A9EFF'];
+  document.getElementById('finPlano').innerHTML = FIN.plano_cobranca.map((p,idx)=>'<div class="fin-nivel" style="border-left-color:'+nivelCor[idx]+'">'
+    +'<h3>NÍVEL '+p.nivel+' · '+esc(p.nome)+'</h3><div class="fin-val">'+finMoney(p.valor)+'</div>'
+    +'<div class="fin-meta">'+p.itens+' itens · '+esc(p.desc)+'</div><div class="fin-meta"><b>Meta:</b> '+esc(p.meta)+'</div><div class="fin-acao"><b>Ação:</b> '+esc(p.acao)+'</div></div>').join('');
+
+  const maxProj = Math.max(...FIN.projecao_3meses.map(p=>Number(p.exposicao)||0),1);
+  document.getElementById('finProj').innerHTML = FIN.projecao_3meses.map(p=>'<div class="fin-proj-row"><div class="fin-proj-label">'+esc(p.mes)+'</div><div class="fin-proj-bg"><div class="fin-proj-bar" style="width:'+(Number(p.exposicao)/maxProj*100).toFixed(1)+'%"></div></div><div class="fin-proj-val">'+finMoney(p.exposicao)+'</div></div>').join('');
+
+  const a = FIN.analise;
+  document.getElementById('finAnalise').innerHTML = '<div class="card"><h3>▸ SAÚDE</h3><p>'+esc(a.saude)+'</p></div>'
+    +'<div class="card"><h3>▸ ALERTA AGOSTO</h3><p>'+esc(a.alerta_agosto)+'</p></div>'
+    +'<div class="card"><h3>▸ ALERTA BOLETOS</h3><p>'+esc(a.alerta_boletos)+'</p></div>'
+    +'<div class="card"><h3>▸ RECOMENDAÇÕES</h3><ul>'+a.recomendacoes.map(r=>'<li>'+esc(r)+'</li>').join('')+'</ul></div>'
+    +'<div class="card"><h3>▸ NARRATIVA</h3><p class="g-narr">'+esc(a.narrativa)+'</p><p style="margin-top:8px;color:var(--muted)">'+esc(a.analista)+'</p></div>';
+})();
+
 function setModo(m){
-  const g = document.getElementById('secGestao'), t = document.getElementById('secTickets'), p = document.getElementById('secPnl'), k = document.getElementById('secKpiHist'), v = document.getElementById('secVendas');
+  const g = document.getElementById('secGestao'), t = document.getElementById('secTickets'), p = document.getElementById('secPnl'), k = document.getElementById('secKpiHist'), v = document.getElementById('secVendas'), f = document.getElementById('secFinanceiro');
   g.classList.toggle('none', m!=='gestao');
   t.classList.toggle('none', m!=='tickets');
   p.classList.toggle('none', m!=='pnl');
   k.classList.toggle('none', m!=='kpihist');
   v.classList.toggle('none', m!=='vendas');
+  f.classList.toggle('none', m!=='financeiro');
   document.getElementById('modoGestao').classList.toggle('active', m==='gestao');
   document.getElementById('modoTickets').classList.toggle('active', m==='tickets');
   document.getElementById('modoPnl').classList.toggle('active', m==='pnl');
   document.getElementById('modoKpiHist').classList.toggle('active', m==='kpihist');
   document.getElementById('modoVendas').classList.toggle('active', m==='vendas');
+  document.getElementById('modoFinanceiro').classList.toggle('active', m==='financeiro');
   if(m==='tickets') setTimeout(()=>{ const b=document.getElementById('busca'); if(b)b.focus(); },50);
 }
 document.getElementById('modoGestao').addEventListener('click', ()=>setModo('gestao'));
@@ -909,6 +993,7 @@ document.getElementById('modoTickets').addEventListener('click', ()=>setModo('ti
 document.getElementById('modoPnl').addEventListener('click', ()=>setModo('pnl'));
 document.getElementById('modoKpiHist').addEventListener('click', ()=>setModo('kpihist'));
 document.getElementById('modoVendas').addEventListener('click', ()=>setModo('vendas'));
+document.getElementById('modoFinanceiro').addEventListener('click', ()=>setModo('financeiro'));
 setModo('gestao');
 
 // ---------- Portão de senha ----------
