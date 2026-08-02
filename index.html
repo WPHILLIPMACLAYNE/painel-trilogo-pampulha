@@ -218,6 +218,34 @@ footer{margin-top:40px;padding-top:18px;border-top:1px solid var(--line);color:v
 .g-acoes li{margin-bottom:8px}
 .g-narr{font-size:13.5px;color:#e0e0e0;line-height:1.65}
 
+/* ---------- P&L JUNHO ---------- */
+.pnl-hero{padding:20px 0 8px}
+.pnl-hero h2{font-size:clamp(20px,3vw,30px);font-weight:900;margin-top:6px;letter-spacing:-.02em}
+.pnl-hero p{color:var(--muted);font-size:13px;margin-top:6px;max-width:760px}
+.pnl-kpis .kpi .v{font-size:26px}
+.pnl-tabela-wrap{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);overflow:auto;margin:14px 0}
+.pnl-tabela{min-width:720px}
+.pnl-tabela th{background:var(--black3);color:var(--muted);font-size:11px;text-transform:uppercase;letter-spacing:.05em;padding:11px 12px;text-align:left;white-space:nowrap}
+.pnl-tabela td{padding:11px 12px;border-top:1px solid var(--line);font-size:12.5px;vertical-align:middle}
+.pnl-tabela tbody tr:hover{background:rgba(255,255,255,.02)}
+.pnl-var-bad{color:var(--red);font-weight:800}
+.pnl-var-good{color:var(--green);font-weight:800}
+.pnl-grupo{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:14px 16px;margin-bottom:10px}
+.pnl-grupo.alerta{border-color:rgba(255,77,79,.55)}
+.pnl-grupo summary{cursor:pointer;font-size:14px;font-weight:800;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.pnl-grupo summary:hover{color:var(--yellow)}
+.pnl-grupo .pnl-linhas{margin-top:12px;overflow:auto}
+.pnl-linha{display:grid;grid-template-columns:minmax(190px,1fr) 120px 120px 110px 70px;gap:8px;align-items:center;border-top:1px solid var(--line);padding:9px 0;font-size:12px;min-width:650px}
+.pnl-linha.cab{border-top:0;color:var(--muted);font-size:10px;text-transform:uppercase;letter-spacing:.05em;padding-top:0}
+.pnl-linha .num{text-align:right;font-variant-numeric:tabular-nums}
+.pnl-linha .nome{color:#e8e8e8}
+.pnl-linha.alerta .nome,.pnl-linha.alerta .num{color:var(--red);font-weight:800}
+.pnl-analise{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px;margin-top:14px}
+.pnl-analise .card{gap:6px}
+.pnl-analise h3{font-size:13px;color:var(--yellow);margin-bottom:4px}
+.pnl-analise p,.pnl-analise li{font-size:12.5px;color:#ddd;line-height:1.5}
+.pnl-analise ul{margin:0 0 0 18px}
+
 @media(max-width:600px){
   .wrap{padding-left:14px;padding-right:14px}
   .filtros{position:static;display:grid;grid-template-columns:1fr}
@@ -255,6 +283,7 @@ footer{margin-top:40px;padding-top:18px;border-top:1px solid var(--line);color:v
   <div class="modo">
     <button type="button" class="modo-btn active" id="modoGestao">📊 Gestão 2026</button>
     <button type="button" class="modo-btn" id="modoTickets">🎫 Tickets</button>
+    <button type="button" class="modo-btn" id="modoPnl">💰 P&L Junho</button>
   </div>
 
   <!-- GESTÃO 2026 -->
@@ -280,6 +309,25 @@ footer{margin-top:40px;padding-top:18px;border-top:1px solid var(--line);color:v
     <div class="sec-titulo"><h2>Planos de ação por tópico</h2><span class="cnt">clique para expandir</span></div>
     <div id="gPlanos"></div>
     <div class="resumo" id="gNarrativa"></div>
+  </div>
+
+  <!-- P&L JUNHO -->
+  <div id="secPnl" class="none">
+    <div class="pnl-hero">
+      <div class="g-tag">💰 Power BI · P&L da unidade</div>
+      <h2>P&L da Unidade</h2>
+      <p>Junho/2026 · SBRMGCPAM02 Pampulha · Dados atualizados em 23/07/2026</p>
+    </div>
+    <div class="kpis pnl-kpis" id="pnlKpis"></div>
+    <div class="sec-titulo"><h2>Resumo do resultado</h2><span class="cnt">Realizado vs Budget · Junho/2026</span></div>
+    <div class="pnl-tabela-wrap"><table class="pnl-tabela">
+      <thead><tr><th>Indicador</th><th>Realizado</th><th>Budget</th><th>Delta</th><th>Delta %</th></tr></thead>
+      <tbody id="pnlResumo"></tbody>
+    </table></div>
+    <div class="sec-titulo"><h2>Detalhamento por grupo</h2><span class="cnt">clique para expandir</span></div>
+    <div id="pnlGrupos"></div>
+    <div class="sec-titulo"><h2>Análise do Codex</h2><span class="cnt">leitura executiva do resultado</span></div>
+    <div id="pnlAnalise" class="pnl-analise"></div>
   </div>
 
   <!-- TICKETS -->
@@ -642,16 +690,75 @@ document.getElementById('gPlanos').innerHTML = Object.entries(G.comparativo).map
 
 document.getElementById('gNarrativa').innerHTML = `<h3>▸ LEITURA DO CONSULTOR</h3><p class="g-narr">${esc(G.narrativa)}</p>`;
 
+// ---------- P&L Junho ----------
+const PNL = {"mes": "Junho/2026", "unidade": "SBRMGCPAM02 - Pampulha", "atualizado": "23/07/2026", "margem_bruta_pct": {"realizado": -8, "budget": 16, "realizado_acum": 19, "budget_acum": 20}, "margem_bruta": {"realizado": -15208, "budget": 29213, "var": -44421, "var_pct": -152, "realizado_acum": 225324, "budget_acum": 223806, "var_acum": 1518, "var_acum_pct": 1}, "receita": {"realizado": 183078, "budget": 182147, "var": 931, "var_pct": 1, "realizado_acum": 1179633, "budget_acum": 1139897, "var_acum": 39736, "var_acum_pct": 3}, "faturamento_bruto": {"realizado": 206794, "budget": 202745, "var": 4049, "var_pct": 2}, "impostos": {"realizado": -23717, "budget": -20598, "var": -3119, "var_pct": 15}, "custos_total": {"realizado": -198286, "budget": -152934, "var": -45352, "var_pct": 30, "realizado_acum": -954309, "budget_acum": -916091, "var_acum": -38218, "var_acum_pct": 4}, "grupos": [{"nome": "Imóveis", "realizado": -60322, "budget": -59407, "var": -915, "var_pct": 2, "itens": [{"nome": "Aluguéis", "realizado": -56838, "budget": -55814, "var": -1024, "var_pct": 2}, {"nome": "Taxas", "realizado": -1043, "budget": -1124, "var": 81, "var_pct": -7}, {"nome": "Condomínio", "realizado": -2441, "budget": -2470, "var": 28, "var_pct": -1}]}, {"nome": "Custo com Pessoal", "realizado": -51908, "budget": -47159, "var": -4748, "var_pct": 10, "itens": [{"nome": "Salários e Ordenados", "realizado": -39558, "budget": -34878, "var": -4680, "var_pct": 13, "subitens": [{"nome": "Salários base", "realizado": -21871, "budget": -20589, "var": -1282, "var_pct": 6}, {"nome": "Horas Extras", "realizado": -1030, "budget": -785, "var": -245, "var_pct": 31}, {"nome": "Adicional Noturno", "realizado": -143, "budget": -179, "var": 36, "var_pct": -20}, {"nome": "Gratificações", "realizado": -711, "budget": -344, "var": -366, "var_pct": 106}, {"nome": "INSS", "realizado": -6114, "budget": -6251, "var": 137, "var_pct": -2}, {"nome": "FGTS", "realizado": -1918, "budget": -2139, "var": 221, "var_pct": -10}, {"nome": "(-) Recuperação FOPAG", "realizado": -7772, "budget": -4590, "var": -3181, "var_pct": 69}]}, {"nome": "Férias", "realizado": -3110, "budget": -2847, "var": -263, "var_pct": 9}]}, {"nome": "Utilidades", "realizado": -18254, "budget": -15728, "var": -2527, "var_pct": 16, "itens": [{"nome": "Energia", "realizado": -7611, "budget": -9581, "var": 1970, "var_pct": -21}, {"nome": "Gás", "realizado": -3012, "budget": -1781, "var": -1231, "var_pct": 69}, {"nome": "Internet, TV e Telefonia", "realizado": -902, "budget": -547, "var": -356, "var_pct": 65}, {"nome": "Insumos", "realizado": -6729, "budget": -3819, "var": -2910, "var_pct": 76}]}, {"nome": "Serviços de Terceiros", "realizado": -13123, "budget": -13257, "var": 134, "var_pct": -1, "itens": [{"nome": "Limpeza e Lavanderia", "realizado": -11949, "budget": -11885, "var": -64, "var_pct": 1}, {"nome": "Expediente e Conveniência", "realizado": 309, "budget": 141, "var": 168, "var_pct": 120}, {"nome": "Informática", "realizado": -324, "budget": -107, "var": -218, "var_pct": 204}, {"nome": "Serviços Administrativos", "realizado": 0, "budget": -261, "var": 261, "var_pct": -100}, {"nome": "Direitos Autorais", "realizado": -1159, "budget": -1146, "var": -13, "var_pct": 1}]}, {"nome": "Manutenção", "realizado": -12331, "budget": -11276, "var": -1054, "var_pct": 9, "itens": [{"nome": "Serviços de Manutenção", "realizado": -12331, "budget": -10695, "var": -1636, "var_pct": 15}, {"nome": "Materiais Auxiliares", "realizado": 0, "budget": -582, "var": 582, "var_pct": -100}]}, {"nome": "Outros Custos ⚠️", "realizado": -39533, "budget": -2974, "var": -36558, "var_pct": 1229, "alerta": true, "itens": [{"nome": "Reembolsos", "realizado": -987, "budget": -1178, "var": 191, "var_pct": -16}, {"nome": "Locação Máquinas/Equip.", "realizado": -145, "budget": -467, "var": 322, "var_pct": -69}, {"nome": "TAXAS E EMOLUMENTOS 🔴", "realizado": -38000, "budget": -1329, "var": -36671, "var_pct": 2759, "alerta": true}, {"nome": "Perdas Operacionais", "realizado": -400, "budget": 0, "var": -400, "var_pct": 0}]}], "analise": {"veredito": "Junho foi um mês operacionalmente ruim, mas por causa de um evento extraordinário de R$ 38 mil em Taxas e Emolumentos — não por queda de receita. Sem esse item, o resultado teria ficado próximo do budget.", "vilao_principal": "Taxas e Emolumentos: R$ 38.000 realizado vs R$ 1.329 de budget (2.759% acima). Esta ÚNICA linha explica 83% do rombo.", "vilao_2": "Custo com Pessoal: R$ 4.748 acima do budget (+10%), puxado por horas extras (+31%), gratificações (+106%) e Recuperação FOPAG (+69%).", "vilao_3": "Insumos: R$ 2.910 acima (+76%), indicando consumo acima do previsto.", "sob_controle": "Faturamento (R$ 4 mil acima), Energia (R$ 2 mil abaixo), Serviços Terceirizados (no budget), Aluguéis/Condomínio (estáveis).", "visao_acumulada": "No acumulado Jan-Jun/2026, a Margem Bruta está R$ 1.518 ACIMA do budget (+1%). Isso indica que junho foi um ponto fora da curva, não uma tendência. A unidade vinha performando bem nos 5 meses anteriores.", "recomendacoes": ["Investigar IMEDIATAMENTE os R$ 38.000 de Taxas e Emolumentos — pedir NF, fornecedor, centro de custo, quem aprovou", "Criar controle mensal de despesas extraordinárias com justificativa e aprovação prévia", "Atacar insumos, gás e manutenção — verificar desperdício, contratos e ordens de serviço", "Controlar folha: horas extras, gratificações e composição de equipe por turno", "Acompanhar semanalmente receita, ativos e custos — não esperar o fechamento mensal"], "relacao_julho": "A queda de -9,7% nos ATIVOS em julho NÃO explica o prejuízo de junho (a receita de junho estava saudável). Mas pode pressionar a receita dos próximos meses se a base de alunos continuar caindo.", "analista": "Codex (gpt-5.6-luna, high reasoning) · Dados extraídos do Power BI .KPI Smart Fit. em 01/08/2026"}};
+const pnlMoney = v => fmt.format(Number(v||0));
+const pnlPct = v => `${Number(v||0)>0?'+':''}${Number(v||0)}%`;
+const pnlVarClass = v => Number(v||0)<0 ? 'pnl-var-bad' : 'pnl-var-good';
+const pnlKpiDefs = [
+  {v:PNL.margem_bruta_pct.realizado, l:'Margem Bruta % · Realizado', c:'red', ic:'📉'},
+  {v:PNL.margem_bruta_pct.budget, l:'Margem Bruta % · Budget', c:'y', ic:'🎯'},
+  {v:PNL.margem_bruta_pct.realizado_acum, l:'Margem Bruta % · Realizado Acum', c:'green', ic:'📈'},
+  {v:PNL.margem_bruta_pct.budget_acum, l:'Margem Bruta % · Budget Acum', c:'', ic:'📊'},
+];
+document.getElementById('pnlKpis').innerHTML = pnlKpiDefs.map(k=>`<div class="kpi ${k.c}"><div class="v">${esc(k.v)}%</div><div class="l"><span class="ic">${k.ic}</span>${esc(k.l)}</div></div>`).join('');
+
+const pnlResumo = [
+  ['RECEITA', PNL.receita],
+  ['CUSTOS', PNL.custos_total],
+  ['MARGEM BRUTA', PNL.margem_bruta],
+];
+document.getElementById('pnlResumo').innerHTML = pnlResumo.map(([nome,t])=>`<tr>
+  <td><b>${esc(nome)}</b></td>
+  <td class="monospace">${pnlMoney(t.realizado)}</td>
+  <td class="monospace">${pnlMoney(t.budget)}</td>
+  <td class="monospace ${pnlVarClass(t.var)}">${pnlMoney(t.var)}</td>
+  <td class="monospace ${pnlVarClass(t.var)}">${pnlPct(t.var_pct)}</td>
+</tr>`).join('');
+
+function pnlItemRows(item, nivel=0){
+  const alerta = item.alerta ? ' alerta' : '';
+  const filhos = (item.subitens||[]).map(sub=>pnlItemRows(sub,nivel+1)).join('');
+  return `<div class="pnl-linha${alerta}">
+    <span class="nome" style="padding-left:${nivel*18}px">${nivel?'↳ ':''}${esc(item.nome)}</span>
+    <span class="num">${pnlMoney(item.realizado)}</span>
+    <span class="num">${pnlMoney(item.budget)}</span>
+    <span class="num ${pnlVarClass(item.var)}">${pnlMoney(item.var)}</span>
+    <span class="num ${pnlVarClass(item.var)}">${pnlPct(item.var_pct)}</span>
+  </div>${filhos}`;
+}
+document.getElementById('pnlGrupos').innerHTML = PNL.grupos.map(g=>{
+  const aberto = g.nome.includes('Outros Custos');
+  const alerta = g.alerta ? ' alerta' : '';
+  return `<details class="pnl-grupo${alerta}"${aberto?' open':''}>
+    <summary>${esc(g.nome)} <span class="g-badge" style="background:${g.alerta?'#FF4D4F':'#FFE600'}">${pnlMoney(g.realizado)}</span><span class="g-meta">budget ${pnlMoney(g.budget)} · ${pnlPct(g.var_pct)}</span></summary>
+    <div class="pnl-linhas">
+      <div class="pnl-linha cab"><span>Conta</span><span class="num">Realizado</span><span class="num">Budget</span><span class="num">Variação</span><span class="num">%</span></div>
+      ${(g.itens||[]).map(item=>pnlItemRows(item)).join('')}
+    </div>
+  </details>`;
+}).join('');
+
+const pa = PNL.analise;
+document.getElementById('pnlAnalise').innerHTML = `
+  <div class="card"><h3>▸ VEREDITO</h3><p>${esc(pa.veredito)}</p></div>
+  <div class="card"><h3>▸ OS 3 VILÕES</h3><ul><li>${esc(pa.vilao_principal)}</li><li>${esc(pa.vilao_2)}</li><li>${esc(pa.vilao_3)}</li></ul></div>
+  <div class="card"><h3>▸ RECOMENDAÇÕES</h3><ul>${(pa.recomendacoes||[]).map(r=>`<li>${esc(r)}</li>`).join('')}</ul></div>
+  <div class="card"><h3>▸ VISÃO ACUMULADA</h3><p>${esc(pa.visao_acumulada)}</p><p style="margin-top:8px;color:#bfe8d1"><b>Sob controle:</b> ${esc(pa.sob_controle)}</p></div>`;
+
 function setModo(m){
-  const g = document.getElementById('secGestao'), t = document.getElementById('secTickets');
+  const g = document.getElementById('secGestao'), t = document.getElementById('secTickets'), p = document.getElementById('secPnl');
   g.classList.toggle('none', m!=='gestao');
   t.classList.toggle('none', m!=='tickets');
+  p.classList.toggle('none', m!=='pnl');
   document.getElementById('modoGestao').classList.toggle('active', m==='gestao');
   document.getElementById('modoTickets').classList.toggle('active', m==='tickets');
+  document.getElementById('modoPnl').classList.toggle('active', m==='pnl');
   if(m==='tickets') setTimeout(()=>{ const b=document.getElementById('busca'); if(b)b.focus(); },50);
 }
 document.getElementById('modoGestao').addEventListener('click', ()=>setModo('gestao'));
 document.getElementById('modoTickets').addEventListener('click', ()=>setModo('tickets'));
+document.getElementById('modoPnl').addEventListener('click', ()=>setModo('pnl'));
 setModo('gestao');
 
 // ---------- Portão de senha ----------
