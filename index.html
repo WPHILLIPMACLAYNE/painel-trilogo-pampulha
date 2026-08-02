@@ -176,6 +176,48 @@ footer{margin-top:40px;padding-top:18px;border-top:1px solid var(--line);color:v
 @keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
 .gate.shaking .card{animation:shake .3s ease}
 
+/* ---------- MODO + GESTÃO 2026 ---------- */
+.modo{display:flex;gap:8px;margin:20px 0 6px;flex-wrap:wrap}
+.modo-btn{background:var(--black3);border:1px solid var(--line);color:#cfcfcf;font-size:13px;font-weight:700;padding:11px 20px;border-radius:999px;cursor:pointer;transition:all .15s}
+.modo-btn:hover{border-color:#444}
+.modo-btn.active{background:var(--yellow);color:#111;border-color:var(--yellow)}
+.gestao-hero{padding:20px 0 8px}
+.g-tag{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--yellow);font-weight:700}
+.gestao-hero h2{font-size:clamp(20px,3vw,30px);font-weight:900;margin-top:6px;letter-spacing:-.02em}
+.gestao-hero p{color:var(--muted);font-size:13px;margin-top:6px;max-width:760px}
+.g-tabela-wrap{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);overflow:auto;margin:14px 0}
+.g-tabela-wrap table{min-width:760px}
+.g-tabela-wrap th{position:sticky;top:0;background:var(--black3);color:var(--muted);font-size:11px;text-transform:uppercase;letter-spacing:.05em;padding:11px 12px;text-align:left;white-space:nowrap}
+.g-tabela-wrap td{padding:10px 12px;border-top:1px solid var(--line);font-size:12.5px;vertical-align:middle}
+.g-tabela-wrap tbody tr:hover{background:rgba(255,255,255,.02)}
+.g-badge{font-size:10px;font-weight:800;padding:3px 10px;border-radius:999px;color:#111;letter-spacing:.04em;text-transform:uppercase;white-space:nowrap}
+.g-bar-row{display:grid;grid-template-columns:110px 1fr 56px;align-items:center;gap:10px;margin-bottom:4px;font-size:12px}
+.g-bar-row .lbl{color:#cfcfcf;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.g-bar-row .lbl.sub{color:var(--muted);font-size:10px;padding-left:12px}
+.g-bars{height:14px;background:var(--black3);border-radius:4px;overflow:hidden}
+.g-bar{height:100%;display:block;border-radius:4px;min-width:2px}
+.g-jul{background:var(--yellow)}
+.g-h1{background:#4A9EFF}
+.g-val{text-align:right;color:var(--muted);font-variant-numeric:tabular-nums}
+.g-card{background:linear-gradient(135deg,#1c1c1c,#151515);border:1px solid rgba(255,230,0,.25);border-radius:var(--radius);padding:16px;margin-bottom:10px}
+.g-rank{font-size:11px;font-weight:900;color:var(--yellow);letter-spacing:.1em}
+.g-title{font-size:16px;font-weight:800;margin:4px 0 2px}
+.g-sub{font-size:11px;color:var(--yellow);text-transform:uppercase;letter-spacing:.08em;font-weight:700}
+.g-d{font-size:12.5px;color:#ddd;margin-top:6px;line-height:1.5}
+.g-key{margin-top:8px;font-size:13px;color:#fff;background:rgba(255,230,0,.08);border-left:3px solid var(--yellow);padding:6px 10px;border-radius:0 8px 8px 0}
+.g-meta{font-size:11px;color:var(--muted);margin-top:6px}
+.g-li{font-size:12.5px;color:#e0e0e0;margin-bottom:8px;line-height:1.45}
+.g-li.alert{color:#ffd7d7}
+.g-li.ok{color:#d7ffe9}
+.g-plano{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:14px 16px;margin-bottom:10px}
+.g-plano summary{cursor:pointer;font-size:14px;font-weight:700;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.g-plano summary:hover{color:var(--yellow)}
+.g-plano .g-d{margin-top:10px}
+.g-tend{font-size:12px;color:var(--muted);margin-top:8px}
+.g-acoes{margin:10px 0 0 18px;font-size:12.5px;color:#ddd;line-height:1.5}
+.g-acoes li{margin-bottom:8px}
+.g-narr{font-size:13.5px;color:#e0e0e0;line-height:1.65}
+
 @media(max-width:600px){
   .wrap{padding-left:14px;padding-right:14px}
   .filtros{position:static;display:grid;grid-template-columns:1fr}
@@ -197,9 +239,9 @@ footer{margin-top:40px;padding-top:18px;border-top:1px solid var(--line);color:v
   </div>
 </div>
 <div class="hero"><div class="wrap">
-  <div class="tag"><span class="dot"></span> Trilogo · Gestão de Facilities · Smart Fit</div>
-  <h1>PAINEL DE <span class="y">TICKETS</span><br>SMART FIT PAMPULHA</h1>
-  <div class="sub">Todos os chamados da unidade <b>SBRMGCPAM02 — PAMPULHA (PRÓPRIA)</b> extraídos direto do Trilogo, com foco nos abertos pelo gerente de unidade. Dados reais, categorizados e filtráveis.</div>
+  <div class="tag"><span class="dot"></span> Smart Fit Pampulha · Painel pessoal de gestão</div>
+  <h1>PAINEL <span class="y">PAMPULHA</span><br>GESTÃO · TICKETS · FACILITIES</h1>
+  <div class="sub">Painel pessoal do gerente <b>Wallace</b> · unidade <b>SBRMGCPAM02 — PAMPULHA (PRÓPRIA)</b> · Gestão 2026 (Power BI) + chamados de facilities (Trilogo).</div>
   <div class="meta">
     <span>Atualizado <b>01/08/2026</b></span>
     <span>Unidade <b>PAMPULHA</b></span>
@@ -209,6 +251,39 @@ footer{margin-top:40px;padding-top:18px;border-top:1px solid var(--line);color:v
 </div></div>
 
 <div class="wrap">
+  <!-- Modo -->
+  <div class="modo">
+    <button type="button" class="modo-btn active" id="modoGestao">📊 Gestão 2026</button>
+    <button type="button" class="modo-btn" id="modoTickets">🎫 Tickets</button>
+  </div>
+
+  <!-- GESTÃO 2026 -->
+  <div id="secGestao" class="none">
+    <div class="gestao-hero">
+      <div class="g-tag">📊 Power BI · .KPI Smart Fit. · Gestão da unidade</div>
+      <h2>2º SEMESTRE 2026 vs 1º SEMESTRE 2026</h2>
+      <p>Gestão de Wallace iniciada em <b>01/07/2026</b> · dados de referência <b>01/08/2026</b> · <b>SBRMGCPAM02 — PAMPULHA</b>. Comparativo por tópico: julho (início do 2º semestre) vs média do 1º semestre de 2026.</p>
+    </div>
+    <div class="resumo" id="gResumo"></div>
+    <div class="sec-titulo"><h2>Comparativo por tópico</h2><span class="cnt">julho vs média do 1º semestre</span></div>
+    <div class="g-tabela-wrap"><table>
+      <thead><tr><th>Tópico</th><th>Jul/26</th><th>Meta Jul</th><th>Média 1º Sem</th><th>Δ% vs H1</th><th>Veredito</th><th>Ating. Jul</th><th>Status meta</th></tr></thead>
+      <tbody id="gTabela"></tbody>
+    </table></div>
+    <div class="charts"><div class="chart" id="gChart"></div></div>
+    <div class="sec-titulo"><h2>Prioridades de ação</h2><span class="cnt">análise do Codex · por impacto e urgência</span></div>
+    <div id="gPrioridades"></div>
+    <div class="charts">
+      <div class="chart" id="gAlertas"></div>
+      <div class="chart" id="gOport"></div>
+    </div>
+    <div class="sec-titulo"><h2>Planos de ação por tópico</h2><span class="cnt">clique para expandir</span></div>
+    <div id="gPlanos"></div>
+    <div class="resumo" id="gNarrativa"></div>
+  </div>
+
+  <!-- TICKETS -->
+  <div id="secTickets">
   <!-- KPIs -->
   <div class="kpis" id="kpis"></div>
 
@@ -259,6 +334,7 @@ footer{margin-top:40px;padding-top:18px;border-top:1px solid var(--line);color:v
   <div class="destaques" id="destaques"></div>
 
   <footer>Gerado automaticamente em 01/08/2026 · dados extraídos da API do Trilogo (SBRMGCPAM02) · Assistente de gestão Wallace</footer>
+  </div>
 </div>
 
 <script>
@@ -506,6 +582,77 @@ dests.push({t:'🧹 Prestadora líder', v: DATA.resumo.mais_acionada, d: DATA.po
 document.getElementById('destaques').innerHTML = dests.map(d=>`<div class="dest"><div class="t">${esc(d.t)}</div><div class="v">${esc(d.v)}</div><div class="d">${esc(d.d)}</div></div>`).join('');
 
 render();
+
+// ---------- Gestão 2026 ----------
+const G = {"unidade": "SBRMGCPAM02 - Pampulha (ID: 520)", "data_ref": "31/07/2026", "gestao_inicio": "01/07/2026", "semestre_atual": "2º Sem 2026 (julho)", "semestre_anterior": "1º Sem 2026 (jan-jun)", "atingimento": {"Ativos (Unidade + TP)": {"atingimento": 95.9, "status": "abaixo da meta", "obs": "meta=100", "meta_julho": 1685}, "Vendas": {"atingimento": 50.5, "status": "NAO BATEU META", "obs": "meta=100", "meta_julho": 93}, "Cancelados": {"atingimento": 96.7, "status": "BATEU META", "obs": "para cancelados, menor atingimento de cancelamento é melhor", "meta_julho": 121}, "Inadimplentes": {"atingimento": 170.2, "status": "NAO BATEU META", "obs": "maior que 100 = mais inadimplência que o aceitável", "meta_julho": null}, "Transferência": {"valor": 4, "status": "Positivo", "meta_julho": null}, "NPS Semestral": {"atingimento": 104.5, "status": "acima da meta", "meta_julho": null}, "Onboarding": {"atingimento": 63.4, "status": "NAO BATEU META", "meta_julho": null}, "Smart Energy": {"atingimento": 0.0, "status": "SEM META", "meta_julho": 0}, "Smart Body": {"atingimento": 0.0, "status": "SEM META"}, "Smart Coach": {"atingimento": 0.0, "status": "SEM META", "meta_julho": 0}}, "comparativo": {"Ativos": {"jul": 1616, "media_h1": 1790.57, "delta_pct": -9.7, "veredito": "piorou", "diagnostico": "A unidade entrou em julho com base ja pressionada e Wallace ainda nao reverteu a perda liquida de alunos. O problema parece ser combinacao de vendas insuficientes, cancelamentos ainda altos e inadimplencia acima do aceitavel. A melhora de NPS e positiva, mas precisa virar permanencia, indicacao e conversao.", "tendencia": "Trajetoria descendente em 2026: 1839 em janeiro, leve estabilidade ate abril, queda para 1764 em maio, 1685 em junho e 1616 em julho. A serie 2025-2026 tambem mostra erosao estrutural da base, saindo de patamares acima de 2400 no inicio de 2025 para 1616 em julho/2026.", "acoes": [{"acao": "Implantar rotina diaria de painel de base com entradas, cancelamentos, inadimplentes recuperados e saldo liquido do dia.", "motivo": "A queda de Ativos para 1616 exige gestao diaria do saldo, nao apenas fechamento mensal.", "responsavel_sugerido": "Gerente da unidade", "prazo_sugerido": "D+1, com acompanhamento diario ate o fechamento de agosto"}, {"acao": "Criar meta semanal de recuperacao de 45 ativos liquidos em agosto, quebrada por vendas novas, reativacoes e inadimplentes regularizados.", "motivo": "A diferenca contra a media H1 e de 174.57 ativos; a recuperacao precisa ser fatiada em entregas semanais.", "responsavel_sugerido": "Gerente + lider de vendas/recepcao", "prazo_sugerido": "Definir em 48 horas e revisar toda segunda-feira"}, {"acao": "Abrir lista dos alunos que treinaram em junho e nao treinaram em julho para contato ativo de retencao.", "motivo": "Alunos com queda de frequencia sao principal publico de risco antes do cancelamento.", "responsavel_sugerido": "Recepcao + professores de sala", "prazo_sugerido": "Primeira lista em 72 horas; contatos em ate 7 dias"}, {"acao": "Fazer blitz de indicacao com alunos promotores do NPS de julho, oferecendo abordagem consultiva para trazer amigos e familiares.", "motivo": "NPS subiu para 63.64 e pode alimentar aquisicao com menor custo.", "responsavel_sugerido": "Gerente + equipe de atendimento", "prazo_sugerido": "Campanha de 15 dias"}], "serie_2026": {"01": 1839, "02": 1819, "03": 1833, "04": 1820, "05": 1764, "06": 1685, "07": 1616}}, "Vendas": {"jul": 47, "media_h1": 84.0, "delta_pct": -44.0, "veredito": "piorou", "diagnostico": "Este e o principal gargalo de crescimento. A unidade perdeu tracao comercial e julho nao mostrou reacao em relacao a junho. Sem recuperar volume de vendas, a melhora de NPS nao compensa cancelamentos, inadimplencia e queda de Ativos.", "tendencia": "Trajetoria de forte desaceleracao: 112 em janeiro, 100 em fevereiro, pico de 138 em marco, queda para 78 em abril, 56 em maio e 47 em junho/julho. A serie desde 2025 tambem aponta queda comercial, com vendas bem mais altas no inicio de 2025.", "acoes": [{"acao": "Montar sala de guerra comercial com meta diaria de leads, visitas, conversoes e vendas fechadas por turno.", "motivo": "Julho vendeu 47 contra media H1 de 84.0; o gap precisa ser perseguido diariamente.", "responsavel_sugerido": "Gerente + consultores/recepcao", "prazo_sugerido": "Comecar em D+1 e revisar ao fim de cada turno"}, {"acao": "Reativar base de leads frios e ex-alunos com oferta de retorno e convite para avaliacao presencial.", "motivo": "A queda de vendas exige recuperar oportunidades ja conhecidas antes de depender apenas de fluxo espontaneo.", "responsavel_sugerido": "Equipe de vendas/recepcao", "prazo_sugerido": "Lista segmentada em 48 horas; campanha de 10 dias"}, {"acao": "Criar roteiro padrao de conversao para visitas: dor do aluno, plano recomendado, objeccoes e fechamento no mesmo atendimento.", "motivo": "Com volume baixo, cada visita precisa ter maior taxa de fechamento.", "responsavel_sugerido": "Gerente + lider de atendimento", "prazo_sugerido": "Treinamento em ate 5 dias"}, {"acao": "Rodar acao local de captacao nos horarios de pico com indicacao de alunos atuais e abordagem de convenios/regiao.", "motivo": "A unidade precisa recompor topo de funil rapidamente para sair de 47 vendas mensais.", "responsavel_sugerido": "Gerente + equipe de campo/recepcao", "prazo_sugerido": "Duas semanas, com medicao diaria"}, {"acao": "Auditar perdas de venda da ultima semana: quem visitou e nao fechou, motivo, preco, horario, concorrencia ou objeccao operacional.", "motivo": "Identificar se o problema e demanda, atendimento, preco percebido ou falha de follow-up.", "responsavel_sugerido": "Gerente", "prazo_sugerido": "Primeira auditoria em 72 horas"}], "serie_2026": {"01": 112, "02": 100, "03": 138, "04": 78, "05": 56, "06": 47, "07": 47}}, "Cancelados": {"jul": 110, "media_h1": 108.14, "delta_pct": 1.7, "veredito": "piorou", "diagnostico": "Cancelamento nao e o maior desvio numerico do mes, mas pressiona uma base ja em queda. O risco e tratar o atingimento de meta como conforto, quando o volume de vendas esta fraco e qualquer cancelamento pesa mais no saldo liquido.", "tendencia": "A serie 2026 e oscilante: 103 em janeiro, 122 em fevereiro, 129 em marco, 117 em abril, melhora para 92 em maio, depois 101 em junho e 110 em julho. Em relacao a 2025, o patamar atual e menor que muitos meses, mas a piora recente de maio para julho merece atencao.", "acoes": [{"acao": "Classificar todos os cancelamentos de julho por motivo: preco, mudanca, frequencia, atendimento, superlotacao, inadimplencia ou experiencia.", "motivo": "Sem motivo raiz, a unidade so reage ao cancelamento depois que ele acontece.", "responsavel_sugerido": "Gerente + recepcao", "prazo_sugerido": "Mapa completo em 5 dias"}, {"acao": "Criar ligacao de retencao em ate 24 horas para qualquer pedido de cancelamento, com oferta adequada ao motivo.", "motivo": "O indicador subiu para 110 e precisa ser contido antes de virar tendencia.", "responsavel_sugerido": "Recepcao senior ou lider de atendimento", "prazo_sugerido": "Inicio imediato"}, {"acao": "Monitorar alunos sem check-in ha 14 dias e acionar antes que virem cancelamento.", "motivo": "Queda de uso costuma anteceder cancelamento e e mais barata de reverter.", "responsavel_sugerido": "Professores de sala + recepcao", "prazo_sugerido": "Lista semanal, primeira em 72 horas"}, {"acao": "Realizar pesquisa curta com cancelados do mes perguntando motivo principal e condicao para retorno.", "motivo": "A unidade precisa transformar cancelamento em inteligencia de produto, atendimento e horario.", "responsavel_sugerido": "Gerente", "prazo_sugerido": "7 dias"}], "serie_2026": {"01": 103, "02": 122, "03": 129, "04": 117, "05": 92, "06": 101, "07": 110}}, "Inadimplentes": {"jul": 160, "media_h1": 151.43, "delta_pct": 5.7, "veredito": "piorou", "diagnostico": "E um alerta operacional e financeiro. Inadimplencia alta derruba receita, mascara base ativa e pode virar cancelamento. Como julho ja estourou a meta, a unidade precisa de rotina de cobranca segmentada e preventiva, nao apenas contato reativo.", "tendencia": "A inadimplencia caiu em fevereiro para 112, mas voltou a subir em marco/abril, teve pico de 187 em maio, caiu para 148 em junho e voltou a 160 em julho. A serie 2025 tinha patamares ainda mais altos no primeiro semestre, mas a meta atual mostra que o nivel de julho e inaceitavel.", "acoes": [{"acao": "Segmentar inadimplentes por tempo de atraso: 1-7 dias, 8-15 dias, 16-30 dias e acima de 30 dias, com abordagem diferente por faixa.", "motivo": "Atingimento de 170.2% indica excesso relevante; a recuperacao precisa priorizar casos mais recuperaveis.", "responsavel_sugerido": "Recepcao + administrativo da unidade", "prazo_sugerido": "D+1"}, {"acao": "Implantar rotina diaria de cobranca humanizada por WhatsApp/telefone para atrasos recentes, com registro de promessa de pagamento.", "motivo": "Atrasos recentes tendem a recuperar mais rapido e evitam que a inadimplencia avance.", "responsavel_sugerido": "Recepcao", "prazo_sugerido": "Inicio imediato; acompanhamento diario"}, {"acao": "Cruzar inadimplentes com frequencia de treino para priorizar quem ainda usa ou pretende usar a academia.", "motivo": "Aluno engajado inadimplente tem maior chance de regularizar do que aluno ausente.", "responsavel_sugerido": "Gerente + recepcao", "prazo_sugerido": "48 horas"}, {"acao": "Abordar aluno inadimplente no check-in com script curto, respeitoso e orientado a solucao de pagamento.", "motivo": "Contato presencial no momento de uso aumenta taxa de regularizacao sem criar atrito desnecessario.", "responsavel_sugerido": "Recepcao por turno", "prazo_sugerido": "Treinar e iniciar em ate 3 dias"}, {"acao": "Definir meta de reducao semanal para voltar abaixo da media H1 de 151.43 e depois aproximar da meta operacional.", "motivo": "Julho fechou com 160; a primeira entrega e remover o excesso contra H1 e recuperar controle.", "responsavel_sugerido": "Gerente", "prazo_sugerido": "Meta semanal a partir da proxima segunda-feira"}], "serie_2026": {"01": 148, "02": 112, "03": 135, "04": 154, "05": 187, "06": 148, "07": 160}}, "NPS": {"jul": 63.64, "media_h1": 55.65, "delta_pct": 14.4, "veredito": "melhorou", "diagnostico": "E o melhor sinal da gestao Wallace em julho. A experiencia percebida melhorou, mas ainda nao virou crescimento de base, vendas ou upsell. O desafio e capturar os motivos dos promotores e replicar a experiencia nos horarios, turmas e pontos de contato criticos.", "tendencia": "Depois de variar entre 52.00 e 57.89 no H1, julho saltou para 63.64. A serie 2025 mostra queda de niveis muito altos no primeiro semestre para 57.78 em dezembro; julho/2026 representa uma recuperacao importante, ainda abaixo dos melhores patamares de 2025.", "acoes": [{"acao": "Mapear comentarios de promotores e detratores de julho e transformar os 3 principais aprendizados em padrao de atendimento.", "motivo": "A alta para 63.64 precisa ser explicada para ser sustentada.", "responsavel_sugerido": "Gerente + lideres de turno", "prazo_sugerido": "5 dias"}, {"acao": "Usar promotores para campanha de indicacao e depoimentos internos, conectando NPS alto com aquisicao.", "motivo": "A unidade tem boa percepcao, mas vendas cairam 44.0% vs H1.", "responsavel_sugerido": "Equipe de atendimento/vendas", "prazo_sugerido": "15 dias"}, {"acao": "Criar rotina semanal de fechamento de detratores: contato, causa, acao tomada e retorno ao aluno.", "motivo": "Evita que experiencia negativa vire cancelamento ou inadimplencia.", "responsavel_sugerido": "Gerente", "prazo_sugerido": "Inicio na semana atual"}, {"acao": "Identificar horarios com maior friccao operacional e fazer ronda gerencial nos picos.", "motivo": "NPS precisa ser sustentado no ambiente real de treino, especialmente em lotacao e atendimento.", "responsavel_sugerido": "Gerente + lideres de turno", "prazo_sugerido": "Plano de ronda em 48 horas"}], "serie_2026": {"01": 52, "02": 55.45, "03": 54.97, "04": 57.89, "05": 57.14, "06": 54.31, "07": 63.64}}, "Onboarding": {"jul": 13, "media_h1": 20.29, "delta_pct": -35.9, "veredito": "piorou", "diagnostico": "A jornada inicial do aluno esta subdimensionada. Isso prejudica ativacao, frequencia e retencao, especialmente quando vendas ja estao baixas. Cada novo aluno precisa entrar rapidamente em rotina de treino para reduzir risco de abandono.", "tendencia": "Onboarding comecou forte em janeiro/fevereiro (27), chegou a 29 em marco, caiu para 24 em abril, despencou para 5 em maio, recuperou para 14 em junho e ficou em 13 em julho. A serie 2025-2026 e muito volatil, indicando ausencia de processo consistente.", "acoes": [{"acao": "Definir agenda fixa de onboarding por turno, com vagas diarias e confirmacao ativa dos alunos novos.", "motivo": "Julho fez 13 contra media H1 de 20.29; falta cadencia operacional.", "responsavel_sugerido": "Professores de sala + recepcao", "prazo_sugerido": "Agenda publicada em 48 horas"}, {"acao": "Contato em ate 24 horas para todo novo matriculado, marcando primeiro treino orientado.", "motivo": "Reduz intervalo entre venda e primeiro uso, aumentando chance de permanencia.", "responsavel_sugerido": "Recepcao", "prazo_sugerido": "Inicio imediato"}, {"acao": "Criar checklist de 7 dias do aluno novo: primeiro treino, apresentacao da sala, app/plano, retorno e duvidas.", "motivo": "Onboarding precisa ser processo, nao evento isolado.", "responsavel_sugerido": "Lider de professores", "prazo_sugerido": "Modelo em 5 dias"}, {"acao": "Medir conversao de novos alunos em onboarding por consultor/turno.", "motivo": "A meta nao foi batida; medir por origem revela gargalos de execucao.", "responsavel_sugerido": "Gerente", "prazo_sugerido": "Primeiro relatorio em 7 dias"}, {"acao": "Acionar alunos vendidos em julho que ainda nao passaram por onboarding.", "motivo": "E a lista mais quente para recuperar ativacao ainda em agosto.", "responsavel_sugerido": "Recepcao + professores", "prazo_sugerido": "Concluir contatos em 72 horas"}], "serie_2026": {"01": 27, "02": 27, "03": 29, "04": 24, "05": 5, "06": 14, "07": 13}}, "Energy": {"jul": 75, "media_h1": 101.71, "delta_pct": -26.3, "veredito": "piorou", "diagnostico": "Smart Energy perdeu forca e provavelmente nao esta sendo tratado como rotina de upsell e retencao. A queda reduz receita adicional e enfraquece a percepcao de solucao completa para o aluno.", "tendencia": "A trajetoria e de queda: 105 em janeiro, 100 em fevereiro, 113 em marco, 109 em abril, 99 em maio, 91 em junho e 75 em julho. A serie desde 2025 tambem mostra perda consistente, saindo de 178 em junho/2025 para 75 em julho/2026.", "acoes": [{"acao": "Auditar base Energy: ativos pagantes, cancelados recentes, inadimplentes e alunos com alto potencial de consumo.", "motivo": "Julho caiu para 75 contra media H1 de 101.71; e preciso saber se a perda e cancelamento, baixa venda ou inadimplencia.", "responsavel_sugerido": "Gerente + recepcao", "prazo_sugerido": "5 dias"}, {"acao": "Treinar recepcao para oferta de Energy no check-in e no pos-treino, com script simples ligado a rotina do aluno.", "motivo": "Upsell precisa aparecer no momento de maior contexto de treino.", "responsavel_sugerido": "Gerente + lider de atendimento", "prazo_sugerido": "Treinamento em 3 dias"}, {"acao": "Criar meta semanal de novas adesoes Energy por turno e acompanhar conversao.", "motivo": "Sem meta de execucao, a tendencia de queda tende a continuar.", "responsavel_sugerido": "Recepcao por turno", "prazo_sugerido": "Comecar na proxima semana"}, {"acao": "Fazer acao de degustacao/experimentacao para alunos frequentes e promotores NPS.", "motivo": "Alunos satisfeitos e frequentes sao os melhores candidatos para upgrade.", "responsavel_sugerido": "Gerente + equipe de atendimento", "prazo_sugerido": "Campanha de 10 dias"}], "serie_2026": {"01": 105, "02": 100, "03": 113, "04": 109, "05": 99, "06": 91, "07": 75}}, "Coach": {"jul": 34, "media_h1": 34.71, "delta_pct": -2.1, "veredito": "estavel", "diagnostico": "Coach nao e o maior problema de julho, mas tambem nao cresce. O produto esta estabilizado em patamar baixo e pode ser usado como alavanca de retencao para alunos que precisam de acompanhamento, especialmente novos alunos e alunos com baixa frequencia.", "tendencia": "A serie 2026 oscila em faixa estreita: 35, 38, 35, 37, 33, 36 e 34. Em 2025 houve queda de patamares de 49 para a faixa de 28-34, e 2026 permanece estabilizado em nivel mais baixo.", "acoes": [{"acao": "Identificar alunos novos e alunos com baixa frequencia que precisam de acompanhamento e oferecer Coach como solucao de aderencia.", "motivo": "Coach pode apoiar retencao e onboarding, dois pontos ligados a queda da base.", "responsavel_sugerido": "Professores + recepcao", "prazo_sugerido": "Lista inicial em 7 dias"}, {"acao": "Criar abordagem integrada no onboarding apresentando Coach para alunos com objetivo especifico ou inseguranca no treino.", "motivo": "O melhor momento de venda consultiva e no inicio da jornada.", "responsavel_sugerido": "Lider de professores", "prazo_sugerido": "Aplicar em ate 5 dias"}, {"acao": "Medir conversao Coach por professor e por turno, com feedback semanal.", "motivo": "A estabilidade em 34 mostra falta de tracao comercial do produto.", "responsavel_sugerido": "Gerente", "prazo_sugerido": "Primeiro ciclo em 2 semanas"}, {"acao": "Fazer revisao de clientes Coach atuais para evitar cancelamento do produto e coletar casos de sucesso.", "motivo": "Manter a base atual evita deterioracao enquanto novas vendas sao trabalhadas.", "responsavel_sugerido": "Professores responsaveis", "prazo_sugerido": "10 dias"}], "serie_2026": {"01": 35, "02": 38, "03": 35, "04": 37, "05": 33, "06": 36, "07": 34}}}, "resumo_executivo": ["Julho/2026 foi o primeiro mes completo da gestao Wallace e mostra um quadro misto com pressao comercial e de base: Ativos ficaram em 1616, -9.7% contra a media H1 de 1790.57, e Vendas ficaram em 47, -44.0% contra 84.0.", "Os indicadores em que subir e bom tiveram comportamentos divergentes: NPS subiu para 63.64 (+14.4% vs H1), mas Ativos, Vendas, Onboarding e Energy cairam de forma relevante.", "Nos indicadores em que subir e ruim, Cancelados chegaram a 110 (+1.7% vs H1) e Inadimplentes a 160 (+5.7% vs H1), sendo inadimplencia o ponto mais critico tambem pela meta de julho, com atingimento de 170.2%.", "A leitura geral e que a experiencia percebida melhorou, mas ainda nao se converteu em crescimento, retencao e monetizacao; o foco de agosto deve ser recuperar funil de vendas, reduzir inadimplencia e estabilizar a jornada inicial do aluno."], "prioridades": [{"ranking": 1, "prioridade": "Recuperar vendas imediatamente", "topico_relacionado": "Vendas", "justificativa": "Vendas ficaram em 47, -44.0% vs media H1 de 84.0, e atingiram apenas 50.5% da meta de julho. Sem venda nova, a base de Ativos continua caindo.", "acao_chave": "Sala de guerra comercial diaria com metas por turno, reativacao de leads e auditoria de perdas.", "responsavel_sugerido": "Gerente + equipe de vendas/recepcao", "prazo_sugerido": "Inicio em D+1"}, {"ranking": 2, "prioridade": "Reduzir inadimplencia acima da meta", "topico_relacionado": "Inadimplentes", "justificativa": "Inadimplentes chegaram a 160, +5.7% vs H1, e o atingimento de julho foi 170.2%, sinalizando excesso relevante sobre o aceitavel.", "acao_chave": "Segmentar atrasos e executar cobranca diaria humanizada com foco nos atrasos recentes.", "responsavel_sugerido": "Gerente + recepcao/administrativo", "prazo_sugerido": "Inicio imediato"}, {"ranking": 3, "prioridade": "Reativar onboarding do aluno novo", "topico_relacionado": "Onboarding", "justificativa": "Onboarding ficou em 13, -35.9% vs H1 e apenas 63.4% de atingimento da meta; isso aumenta risco de abandono e enfraquece retencao.", "acao_chave": "Agenda fixa por turno, contato em 24 horas e checklist de 7 dias do novo aluno.", "responsavel_sugerido": "Lider de professores + recepcao", "prazo_sugerido": "48 horas"}, {"ranking": 4, "prioridade": "Conter queda de Ativos com gestao de saldo liquido", "topico_relacionado": "Ativos", "justificativa": "Ativos fecharam em 1616, -9.7% vs H1, abaixo da meta de julho com atingimento de 95.9%.", "acao_chave": "Painel diario de saldo liquido e lista de alunos sem frequencia para contato ativo.", "responsavel_sugerido": "Gerente + lideres de turno", "prazo_sugerido": "D+1"}, {"ranking": 5, "prioridade": "Recuperar Energy como receita adicional", "topico_relacionado": "Energy", "justificativa": "Energy caiu para 75, -26.3% vs H1 de 101.71, mantendo tendencia de queda desde 2025.", "acao_chave": "Auditoria da base Energy, script de upsell e campanha com alunos promotores/frequentes.", "responsavel_sugerido": "Gerente + recepcao", "prazo_sugerido": "5 a 10 dias"}, {"ranking": 6, "prioridade": "Sustentar NPS e converter satisfacao em indicacao", "topico_relacionado": "NPS", "justificativa": "NPS foi o melhor indicador, 63.64 e +14.4% vs H1, mas ainda nao se converteu em vendas ou base.", "acao_chave": "Campanha com promotores, fechamento de detratores e ronda gerencial nos horarios criticos.", "responsavel_sugerido": "Gerente + equipe de atendimento", "prazo_sugerido": "15 dias"}], "alertas": ["Vendas: 47 em julho contra media H1 de 84.0, queda de -44.0% e apenas 50.5% de atingimento da meta.", "Onboarding: 13 em julho contra media H1 de 20.29, queda de -35.9% e 63.4% de atingimento da meta.", "Energy: 75 em julho contra media H1 de 101.71, queda de -26.3%, mantendo tendencia longa de reducao.", "Ativos: 1616 em julho contra media H1 de 1790.57, queda de -9.7% e 95.9% de atingimento da meta.", "Inadimplentes: 160 em julho contra media H1 de 151.43; como subir e ruim, o aumento de +5.7% e agravado pelo atingimento de 170.2% da meta.", "Cancelados: 110 em julho contra media H1 de 108.14; como subir e ruim, houve piora leve de +1.7%, apesar de a meta mensal ter sido batida."], "oportunidades": ["NPS foi o destaque positivo: 63.64 em julho contra media H1 de 55.65, melhora de +14.4% e atingimento de 104.5% da meta.", "A melhora de experiencia pode ser convertida em indicacoes, depoimentos, reativacao de ex-alunos e reducao de cancelamentos.", "Cancelados ainda estao em patamar menor do que muitos meses de 2025, o que indica oportunidade de estabilizar retencao com processo preventivo.", "Coach esta praticamente estavel (-2.1% vs H1) e pode ser usado como ferramenta de aderencia para alunos novos e alunos com baixa frequencia.", "A queda de inadimplencia em junho para 148 mostra que a unidade ja teve capacidade recente de operar abaixo do nivel de julho; ha base para recuperar controle em agosto."], "narrativa": "Wallace, julho foi seu primeiro mes completo e o painel mostra uma gestao com sinal positivo claro em experiencia, mas ainda sem resposta suficiente nos indicadores de crescimento e controle. O NPS subiu para 63.64, +14.4% contra a media do primeiro semestre, e isso deve ser preservado: existe percepcao melhor do aluno e ela pode virar indicacao, retencao e venda consultiva. O ponto critico e que os numeros que sustentam a base pioraram. Vendas ficaram em 47, -44.0% contra H1 e apenas 50.5% da meta; Onboarding caiu para 13, -35.9%; Energy foi para 75, -26.3%; e Ativos fecharam em 1616, -9.7%. Nas metricas em que subir e ruim, tambem ha alerta: Inadimplentes chegaram a 160, +5.7% vs H1, com 170.2% de atingimento da meta, e Cancelados subiram levemente para 110. A prioridade de agosto deve ser pragmatica: sala de guerra comercial diaria, cobranca segmentada de inadimplentes, agenda fixa de onboarding e rotina de retencao antes do cancelamento. O desafio nao e apenas vender mais, mas recompor o ciclo completo: atrair, ativar no primeiro treino, manter frequencia, recuperar pagamentos e transformar o NPS em indicacao. Se esses rituais entrarem na rotina da equipe, a unidade tem chance real de virar a tendencia ainda no proximo fechamento.", "sem_serie": ["Body", "Pré-Vendas acumuladas", "Transferência"]};
+const gv = v => (v==null||v===''?'—':v);
+const verCor = {melhorou:'#3DDC97', piorou:'#FF4D4F', estavel:'#FFE600', misto:'#FFB700'};
+const verLbl = {melhorou:'MELHOROU', piorou:'PIOROU', estavel:'ESTÁVEL', misto:'MISTO'};
+const piorSeSubiu = ['Cancelados','Inadimplentes'];
+const deltaCor = (nome, d) => { const invert = piorSeSubiu.includes(nome); const ruim = invert ? d>0 : d<0; return ruim ? '#FF4D4F' : '#3DDC97'; };
+
+document.getElementById('gResumo').innerHTML = `
+  <h3>▸ RESUMO DA GESTÃO · 2º SEM 2026 (JULHO) vs 1º SEM 2026</h3>
+  <div class="itens">${G.resumo_executivo.map(r=>`<div>${esc(r)}</div>`).join('')}</div>`;
+
+const atingMap = {'Ativos':'Ativos (Unidade + TP)','Vendas':'Vendas','Cancelados':'Cancelados','Inadimplentes':'Inadimplentes','NPS':'NPS Semestral','Onboarding':'Onboarding','Energy':'Smart Energy','Coach':'Smart Coach'};
+document.getElementById('gTabela').innerHTML = Object.entries(G.comparativo).map(([nome,t])=>{
+  const at = G.atingimento[atingMap[nome]]||{};
+  const atStr = at.atingimento!=null ? at.atingimento+'%' : '—';
+  const stStr = at.status?esc(at.status):'—';
+  return `<tr>
+    <td><b>${esc(nome)}</b></td>
+    <td class="monospace">${gv(t.jul)}</td>
+    <td class="monospace">${gv(t.media_h1)}</td>
+    <td class="monospace" style="color:${deltaCor(nome,t.delta_pct)};font-weight:800">${t.delta_pct>0?'+':''}${t.delta_pct}%</td>
+    <td><span class="g-badge" style="background:${verCor[t.veredito]}">${verLbl[t.veredito]}</span></td>
+    <td class="monospace">${at.meta_julho!=null?at.meta_julho:'—'}</td>
+    <td class="monospace">${atStr}</td>
+    <td>${stStr}</td>
+  </tr>`;
+}).join('');
+
+const maxG = Math.max(...Object.values(G.comparativo).map(t=>Math.max(t.jul,t.media_h1)));
+document.getElementById('gChart').innerHTML = `<h3><span class="dot"></span>Julho (2º sem) vs Média 1º sem</h3>` +
+  Object.entries(G.comparativo).map(([nome,t])=>{
+    return `<div class="g-bar-row"><span class="lbl">${esc(nome)}</span><span class="g-bars"><span class="g-bar g-jul" style="width:${(t.jul/maxG*100).toFixed(1)}%"></span></span><span class="g-val">${gv(t.jul)}</span></div>
+    <div class="g-bar-row"><span class="lbl sub">média 1ºsem</span><span class="g-bars"><span class="g-bar g-h1" style="width:${(t.media_h1/maxG*100).toFixed(1)}%"></span></span><span class="g-val">${gv(t.media_h1)}</span></div>`;
+  }).join('');
+
+document.getElementById('gPrioridades').innerHTML = G.prioridades.map(p=>`
+  <div class="g-card">
+    <div class="g-rank">PRIORIDADE #${p.ranking}</div>
+    <div class="g-title">${esc(p.prioridade)}</div>
+    <div class="g-sub">${esc(p.topico_relacionado)}</div>
+    <div class="g-d">${esc(p.justificativa)}</div>
+    <div class="g-key">🎯 ${esc(p.acao_chave)}</div>
+    <div class="g-meta">👤 ${esc(p.responsavel_sugerido)} · ⏱ ${esc(p.prazo_sugerido)}</div>
+  </div>`).join('');
+
+document.getElementById('gAlertas').innerHTML = `<h3><span class="dot" style="background:#FF4D4F"></span>Alertas</h3>` + G.alertas.map(a=>`<div class="g-li alert">🔴 ${esc(a)}</div>`).join('');
+document.getElementById('gOport').innerHTML = `<h3><span class="dot" style="background:#3DDC97"></span>Oportunidades</h3>` + G.oportunidades.map(o=>`<div class="g-li ok">🟢 ${esc(o)}</div>`).join('');
+
+document.getElementById('gPlanos').innerHTML = Object.entries(G.comparativo).map(([nome,t])=>{
+  const acoes = (t.acoes||[]).map(a=>`<li><b>${esc(a.acao)}</b> — ${esc(a.motivo)} <span class="g-meta">(${esc(a.responsavel_sugerido)} · ${esc(a.prazo_sugerido)})</span></li>`).join('');
+  return `<details class="g-plano"><summary>${esc(nome)} <span class="g-badge" style="background:${verCor[t.veredito]}">${verLbl[t.veredito]}</span> <span class="g-meta">jul ${gv(t.jul)} · ${t.delta_pct>0?'+':''}${t.delta_pct}% vs H1</span></summary>
+    <div class="g-d">${esc(t.diagnostico)}</div>
+    <div class="g-tend">📈 Tendência: ${esc(t.tendencia)}</div>
+    <ol class="g-acoes">${acoes}</ol></details>`;
+}).join('');
+
+document.getElementById('gNarrativa').innerHTML = `<h3>▸ LEITURA DO CONSULTOR</h3><p class="g-narr">${esc(G.narrativa)}</p>`;
+
+function setModo(m){
+  const g = document.getElementById('secGestao'), t = document.getElementById('secTickets');
+  g.classList.toggle('none', m!=='gestao');
+  t.classList.toggle('none', m!=='tickets');
+  document.getElementById('modoGestao').classList.toggle('active', m==='gestao');
+  document.getElementById('modoTickets').classList.toggle('active', m==='tickets');
+  if(m==='tickets') setTimeout(()=>{ const b=document.getElementById('busca'); if(b)b.focus(); },50);
+}
+document.getElementById('modoGestao').addEventListener('click', ()=>setModo('gestao'));
+document.getElementById('modoTickets').addEventListener('click', ()=>setModo('tickets'));
+setModo('gestao');
 
 // ---------- Portão de senha ----------
 const PWHASH = 'b41cc61af93179407c73ead22f9bb42a9a9531e108909c4d03f3b7c47de628b1';
