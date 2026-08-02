@@ -246,6 +246,24 @@ footer{margin-top:40px;padding-top:18px;border-top:1px solid var(--line);color:v
 .pnl-analise p,.pnl-analise li{font-size:12.5px;color:#ddd;line-height:1.5}
 .pnl-analise ul{margin:0 0 0 18px}
 
+/* ---------- KPI HISTÓRICO ---------- */
+.kpi-hist-hero{padding:20px 0 8px}
+.kpi-hist-hero h2{font-size:clamp(20px,3vw,30px);font-weight:900;margin-top:6px;letter-spacing:-.02em}
+.kpi-hist-hero p{color:var(--muted);font-size:13px;margin-top:6px;max-width:900px}
+.kpi-hist-tabela-wrap{background:#171717;border:1px solid var(--line);border-radius:var(--radius);overflow:auto;margin:14px 0}
+.kpi-hist-tabela{min-width:1120px}
+.kpi-hist-tabela th{background:#1c1c1c;color:var(--muted);font-size:11px;text-transform:uppercase;letter-spacing:.05em;padding:11px 12px;text-align:left;white-space:nowrap}
+.kpi-hist-tabela td{padding:10px 12px;border-top:1px solid var(--line);font-size:12px;vertical-align:middle;white-space:nowrap}
+.kpi-hist-tabela tbody tr:hover{background:rgba(255,255,255,.02)}
+.kpi-hist-tabela tbody tr.alerta td:first-child{color:var(--red)}
+.kpi-hist-tabela .green{color:var(--green);font-weight:800}
+.kpi-hist-tabela .red{color:var(--red);font-weight:800}
+.kpi-hist-analise{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px;margin-top:14px}
+.kpi-hist-analise .card{background:#171717}
+.kpi-hist-analise h3{font-size:13px;color:#FFE600;margin-bottom:4px}
+.kpi-hist-analise p,.kpi-hist-analise li{font-size:12.5px;color:#ddd;line-height:1.5}
+.kpi-hist-analise ul{margin:0 0 0 18px}
+
 @media(max-width:600px){
   .wrap{padding-left:14px;padding-right:14px}
   .filtros{position:static;display:grid;grid-template-columns:1fr}
@@ -284,6 +302,7 @@ footer{margin-top:40px;padding-top:18px;border-top:1px solid var(--line);color:v
     <button type="button" class="modo-btn active" id="modoGestao">📊 Gestão 2026</button>
     <button type="button" class="modo-btn" id="modoTickets">🎫 Tickets</button>
     <button type="button" class="modo-btn" id="modoPnl">💰 P&L Junho</button>
+    <button type="button" class="modo-btn" id="modoKpiHist">📈 KPI Histórico</button>
   </div>
 
   <!-- GESTÃO 2026 -->
@@ -328,6 +347,19 @@ footer{margin-top:40px;padding-top:18px;border-top:1px solid var(--line);color:v
     <div id="pnlGrupos"></div>
     <div class="sec-titulo"><h2>Análise do Codex</h2><span class="cnt">leitura executiva do resultado</span></div>
     <div id="pnlAnalise" class="pnl-analise"></div>
+  </div>
+
+  <!-- KPI HISTÓRICO -->
+  <div id="secKpiHist" class="none">
+    <div class="kpi-hist-hero">
+      <div class="g-tag">📈 Power BI .KPI Smart Fit. · KPI - Histórico · Analítico Mensal</div>
+      <h2>KPI Histórico — Analítico Mensal</h2>
+      <p>SBRMGCPAM02 - Pampulha · período <b>Janeiro a Julho/2026</b> · atualizado em <b>01/08/2026 11:15</b></p>
+    </div>
+    <div class="sec-titulo"><h2>Todos os KPIs</h2><span class="cnt">Jan–Jul/2026 · comparação com média H1</span></div>
+    <div class="kpi-hist-tabela-wrap"><table class="kpi-hist-tabela" id="kpiTabela"></table></div>
+    <div class="sec-titulo"><h2>Análise</h2><span class="cnt">leitura executiva do histórico mensal</span></div>
+    <div id="kpiAnalise" class="kpi-hist-analise"></div>
   </div>
 
   <!-- TICKETS -->
@@ -746,19 +778,48 @@ document.getElementById('pnlAnalise').innerHTML = `
   <div class="card"><h3>▸ RECOMENDAÇÕES</h3><ul>${(pa.recomendacoes||[]).map(r=>`<li>${esc(r)}</li>`).join('')}</ul></div>
   <div class="card"><h3>▸ VISÃO ACUMULADA</h3><p>${esc(pa.visao_acumulada)}</p><p style="margin-top:8px;color:#bfe8d1"><b>Sob controle:</b> ${esc(pa.sob_controle)}</p></div>`;
 
+const KH = {"fonte": "Power BI .KPI Smart Fit. · KPI - Histórico · Analítico Mensal", "atualizado": "01/08/2026 11:15", "unidade": "SBRMGCPAM02 - Pampulha", "periodo": "Janeiro a Julho/2026", "meses": ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul"], "kpis": [{"nome": "Ativos", "valores": [1839, 1819, 1833, 1820, 1764, 1685, 1616], "media_h1": 1793.3, "julho": 1616, "delta": -177.3, "delta_pct": -9.9, "veredito": "PIOROU", "class": "🔴", "alerta": true}, {"nome": "Vendas", "valores": [112, 100, 138, 78, 56, 47, 47], "media_h1": 88.5, "julho": 47, "delta": -41.5, "delta_pct": -46.9, "veredito": "PIOROU", "class": "🔴", "alerta": true}, {"nome": "Cancelamentos", "valores": [103, 123, 131, 119, 95, 101, 117], "media_h1": 112.0, "julho": 117, "delta": 5.0, "delta_pct": 4.5, "veredito": "PIOROU", "class": "🔴"}, {"nome": "Inadimplência", "valores": [148, 112, 135, 154, 187, 148, 160], "media_h1": 147.3, "julho": 160, "delta": 12.7, "delta_pct": 8.6, "veredito": "PIOROU", "class": "🔴"}, {"nome": "Acessos", "valores": [16100, 14134, 16480, 14874, 14353, 13357, 13745], "media_h1": 14883.0, "julho": 13745, "delta": -1138.0, "delta_pct": -7.6, "veredito": "PIOROU", "class": "🔴"}, {"nome": "Onboarding", "valores": [27, 27, 29, 24, 5, 14, 13], "media_h1": 21.0, "julho": 13, "delta": -8.0, "delta_pct": -38.1, "veredito": "PIOROU", "class": "🔴", "alerta": true}, {"nome": "Faturamento ($)", "valores": [198817, 185082, 187513, 179577, 178918, 171700, 173591], "media_h1": 183601.2, "julho": 173591, "delta": -10010.2, "delta_pct": -5.5, "veredito": "PIOROU", "class": "🔴", "money": true}, {"nome": "Body - Ativos", "valores": [207, 204, 186, 184, 165, 151, 146], "media_h1": 182.8, "julho": 146, "delta": -36.8, "delta_pct": -20.2, "veredito": "PIOROU", "class": "🔴"}, {"nome": "Body - Cancelamentos", "valores": [16, 10, 22, 10, 20, 11, 15], "media_h1": 14.8, "julho": 15, "delta": 0.2, "delta_pct": 1.1, "veredito": "ESTÁVEL", "class": "🟠"}, {"nome": "Body - Vendas", "valores": [10, 8, 6, 6, 4, 8, 7], "media_h1": 7.0, "julho": 7, "delta": 0.0, "delta_pct": 0.0, "veredito": "ESTÁVEL", "class": "🟠"}, {"nome": "Coach - Ativos", "valores": [35, 38, 35, 37, 33, 36, 34], "media_h1": 35.7, "julho": 34, "delta": -1.7, "delta_pct": -4.7, "veredito": "PIOROU", "class": "🔴"}, {"nome": "Coach - Cancelamentos", "valores": [4, 3, 6, 4, 7, 4, 12], "media_h1": 4.7, "julho": 12, "delta": 7.3, "delta_pct": 157.1, "veredito": "PIOROU", "class": "🔴", "alerta": true}, {"nome": "Convidado Black", "valores": [491, 439, 376, 406, 302, 280, 364], "media_h1": 382.3, "julho": 364, "delta": -18.3, "delta_pct": -4.8, "veredito": "PIOROU", "class": "🔴"}, {"nome": "Transferências (Líquido)", "valores": [-20, 5, -14, 2, -6, 2, 4], "media_h1": -5.2, "julho": 4, "delta": 9.2, "delta_pct": null, "veredito": "MELHOROU", "class": "🟢"}, {"nome": "Pedidos de Cancelamento", "valores": [138, 124, 119, 96, 85, 111, 112], "media_h1": 112.2, "julho": 112, "delta": -0.2, "delta_pct": -0.1, "veredito": "ESTÁVEL", "class": "🟠"}, {"nome": "Upgrades Black", "valores": [10, 3, 5, 4, 3, 2, 0], "media_h1": 4.5, "julho": 0, "delta": -4.5, "delta_pct": -100.0, "veredito": "PIOROU", "class": "🔴"}, {"nome": "Vendas não ativadas", "valores": [2, 3, 0, 4, 3, 3, 0], "media_h1": 2.5, "julho": 0, "delta": -2.5, "delta_pct": -100.0, "veredito": "MELHOROU", "class": "🟢"}, {"nome": "Alteração Forma Pagto", "valores": [80, 74, 67, 66, 61, 56, 41], "media_h1": 67.3, "julho": 41, "delta": -26.3, "delta_pct": -39.1, "veredito": "MELHOROU", "class": "🟢"}, {"nome": "Alterar Data Vencimento", "valores": [28, 25, 36, 21, 27, 20, 26], "media_h1": 26.2, "julho": 26, "delta": -0.2, "delta_pct": -0.6, "veredito": "ESTÁVEL", "class": "🟠"}, {"nome": "Congelados/Suspensos", "valores": [4, 2, 5, 3, 3, 3, 5], "media_h1": 3.3, "julho": 5, "delta": 1.7, "delta_pct": 50.0, "veredito": "PIOROU", "class": "🔴"}, {"nome": "Metragem Unidade", "valores": [30473, 27524, 30473, 29490, 30473, 29490, 30473], "media_h1": 29653.8, "julho": 30473, "delta": 819.2, "delta_pct": 2.8, "veredito": "ESTÁVEL", "class": "🟠"}], "analise": {"top_problemas": ["VENDAS: 47 em julho vs média de 88,5 — queda de 46,9%. Em queda livre desde março (138 → 47).", "ONBOARDING: 13 vs média de 21 — queda de 38,1%. Caiu de 27-29/mês para 13. Metade dos alunos novos não estão entrando.", "ATIVOS: 1.616 vs média de 1.793 — perda de 177 membros (-9,9%). Tendência estrutural de queda desde janeiro (-12,1%)."], "top_positivos": ["TRANSFERÊNCIAS: Saldo saiu de -5,2 (média) para +4 em julho. Primeiro saldo positivo consistente.", "FATURAMENTO: Recuperou R$ 1.891 vs junho (R$ 171.700 → R$ 173.591), interrompendo 5 meses de queda.", "CONVIDADO BLACK: Subiu 30% vs junho (280 → 364), mostrando capacidade de conversão."], "julho_vs_junho": {"melhorou": "Acessos (+388), Faturamento (+R$ 1.891), Convidado Black (+84), Transferências (+2)", "piorou": "Ativos (-69), Cancelamentos (+16), Inadimplência (+12), Onboarding (-1), Coach cancelamentos (+8 = +200%)"}, "tendencia_ativos": "Tendência estrutural de deterioração, não sazonalidade. Queda de 1.839 → 1.616 (-12,1%) em 7 meses, com aceleração a partir de abril. Necessário comparar com anos anteriores para confirmar.", "recomendacoes": ["Criar campanha imediata de recuperação de vendas: leads, indicações, aula experimental, conversão de Black", "Implantar rotina diária de onboarding para reverter queda de 21 → 13", "Força-tarefa de retenção: cancelamentos, inadimplência e base em risco", "Investigar URGENTE os 12 coach cancelamentos de julho e motivos de saída", "Acompanhar semanalmente: ativos, vendas, onboarding, inadimplência"], "narrativa": "A Pampulha encerra julho com deterioração relevante: ativos caíram 12,1% desde janeiro, vendas estão 46,9% abaixo da média do 1º semestre, onboarding recuou 38,1% e a inadimplência permanece elevada. Julho trouxe recuperação pontual em acessos, faturamento, convidados Black e transferências — mas esses avanços ainda não compensam a perda de base e a fragilidade comercial. A prioridade executiva deve ser interromper a evasão, recuperar vendas e onboarding e atacar imediatamente inadimplência e cancelamentos de coaches.", "analista": "Codex (gpt-5.6-luna, medium reasoning) · Dados extraídos do Power BI KPI - Histórico em 01/08/2026"}};
+const kMesMap = ['Jan','Fev','Mar','Abr','Mai','Jun','Jul'];
+(function(){
+ const tb = document.getElementById('kpiTabela');
+ tb.innerHTML = '<thead><tr><th>KPI</th>'+kMesMap.map(m=>'<th>'+m+'</th>').join('')+'<th>Média H1</th><th>Jul</th><th>Δ%</th><th>Veredito</th></tr></thead><tbody>'
+   + KH.kpis.map(k=>{
+     const cls = k.alerta ? ' class="alerta"' : '';
+     const fmt = v => k.money ? 'R$ '+Number(v).toLocaleString('pt-BR') : Number(v).toLocaleString('pt-BR');
+     const dp = k.delta_pct!=null ? (k.delta_pct>0?'+':'')+k.delta_pct.toFixed(1)+'%' : '—';
+     return '<tr'+cls+'><td><b>'+esc(k.nome)+'</b></td>'
+       + k.valores.map(v=>'<td>'+fmt(v)+'</td>').join('')
+       + '<td>'+fmt(k.media_h1)+'</td><td>'+fmt(k.julho)+'</td>'
+       + '<td class="'+(k.class==='🟢'?'green':'')+(k.class==='🔴'?'red':'')+'">'+dp+'</td>'
+       + '<td>'+k.class+' '+esc(k.veredito)+'</td></tr>';
+   }).join('')+'</tbody>';
+
+ const ka = KH.analise;
+ document.getElementById('kpiAnalise').innerHTML =
+   '<div class="card"><h3>▸ TOP 3 PROBLEMAS</h3><ul>'+ka.top_problemas.map(p=>'<li>'+esc(p)+'</li>').join('')+'</ul></div>'
+   +'<div class="card"><h3>▸ TOP 3 POSITIVOS</h3><ul>'+ka.top_positivos.map(p=>'<li>'+esc(p)+'</li>').join('')+'</ul></div>'
+   +'<div class="card"><h3>▸ JULHO vs JUNHO</h3><p><b>Melhorou:</b> '+esc(ka.julho_vs_junho.melhorou)+'</p><p><b>Piorou:</b> '+esc(ka.julho_vs_junho.piorou)+'</p></div>'
+   +'<div class="card"><h3>▸ RECOMENDAÇÕES</h3><ul>'+ka.recomendacoes.map(r=>'<li>'+esc(r)+'</li>').join('')+'</ul></div>'
+   +'<div class="card"><h3>▸ ATIVOS: TENDÊNCIA OU SAZONALIDADE?</h3><p>'+esc(ka.tendencia_ativos)+'</p></div>'
+   +'<div class="card"><h3>▸ NARRATIVA</h3><p class="g-narr">'+esc(ka.narrativa)+'</p></div>';
+})();
+
 function setModo(m){
-  const g = document.getElementById('secGestao'), t = document.getElementById('secTickets'), p = document.getElementById('secPnl');
+  const g = document.getElementById('secGestao'), t = document.getElementById('secTickets'), p = document.getElementById('secPnl'), k = document.getElementById('secKpiHist');
   g.classList.toggle('none', m!=='gestao');
   t.classList.toggle('none', m!=='tickets');
   p.classList.toggle('none', m!=='pnl');
+  k.classList.toggle('none', m!=='kpihist');
   document.getElementById('modoGestao').classList.toggle('active', m==='gestao');
   document.getElementById('modoTickets').classList.toggle('active', m==='tickets');
   document.getElementById('modoPnl').classList.toggle('active', m==='pnl');
+  document.getElementById('modoKpiHist').classList.toggle('active', m==='kpihist');
   if(m==='tickets') setTimeout(()=>{ const b=document.getElementById('busca'); if(b)b.focus(); },50);
 }
 document.getElementById('modoGestao').addEventListener('click', ()=>setModo('gestao'));
 document.getElementById('modoTickets').addEventListener('click', ()=>setModo('tickets'));
 document.getElementById('modoPnl').addEventListener('click', ()=>setModo('pnl'));
+document.getElementById('modoKpiHist').addEventListener('click', ()=>setModo('kpihist'));
 setModo('gestao');
 
 // ---------- Portão de senha ----------
